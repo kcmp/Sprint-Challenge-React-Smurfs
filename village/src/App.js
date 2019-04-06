@@ -32,6 +32,16 @@ class App extends Component {
     this.setState({ smurfs })
   }
 
+  handleDelete = (id) => {
+    console.log("In handleDelete");
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then( response => {
+        console.log("response:", response);
+        this.setState({ smurfs: response.data });
+      })
+      .catch( err => console.log(err) );
+  };
+
   render() {
     return (
       <div className="App">
